@@ -1,13 +1,13 @@
 import React, { Component }  from 'react'
 import {Text, View, StyleSheet, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import receitas from '../bd/receitas'
 
-export default function Sinopse ( { navigation } ) {
+export default function Sinopse ( { navigation, filtroReceitas } ) {
 
+    const receitas = [...filtroReceitas]
     return receitas.map(receita => {
         return (
-            <View style ={styles.box} key={receita.id}>
+            <View style ={styles.box} key={receita.id + ''}>
                 <Image style={styles.img} source={{uri: receita.imagem}}></Image>
                 <Text style={styles.title}>{receita.nome}</Text>
                 <TouchableOpacity onPress = { () => navigation.navigate('Receita', {id : receita.id})}>
